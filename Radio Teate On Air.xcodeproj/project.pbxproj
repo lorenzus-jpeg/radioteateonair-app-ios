@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		9122C0292E7CCDAE00B5E1CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9122C0132E7CCDAD00B5E1CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9122C01A2E7CCDAD00B5E1CB;
+			remoteInfo = "Radio Teate On Air";
+		};
+		9122C0332E7CCDAE00B5E1CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9122C0132E7CCDAD00B5E1CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9122C01A2E7CCDAD00B5E1CB;
+			remoteInfo = "Radio Teate On Air";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9122C01B2E7CCDAD00B5E1CB /* Radio Teate On Air.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Radio Teate On Air.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9122C0282E7CCDAE00B5E1CB /* Radio Teate On AirTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Radio Teate On AirTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9122C0322E7CCDAE00B5E1CB /* Radio Teate On AirUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Radio Teate On AirUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		9122C01D2E7CCDAD00B5E1CB /* Radio Teate On Air */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Radio Teate On Air";
+			sourceTree = "<group>";
+		};
+		9122C02B2E7CCDAE00B5E1CB /* Radio Teate On AirTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Radio Teate On AirTests";
+			sourceTree = "<group>";
+		};
+		9122C0352E7CCDAE00B5E1CB /* Radio Teate On AirUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Radio Teate On AirUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9122C0182E7CCDAD00B5E1CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9122C0252E7CCDAE00B5E1CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9122C02F2E7CCDAE00B5E1CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9122C0122E7CCDAD00B5E1CB = {
+			isa = PBXGroup;
+			children = (
+				9122C01D2E7CCDAD00B5E1CB /* Radio Teate On Air */,
+				9122C02B2E7CCDAE00B5E1CB /* Radio Teate On AirTests */,
+				9122C0352E7CCDAE00B5E1CB /* Radio Teate On AirUITests */,
+				9122C01C2E7CCDAD00B5E1CB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9122C01C2E7CCDAD00B5E1CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9122C01B2E7CCDAD00B5E1CB /* Radio Teate On Air.app */,
+				9122C0282E7CCDAE00B5E1CB /* Radio Teate On AirTests.xctest */,
+				9122C0322E7CCDAE00B5E1CB /* Radio Teate On AirUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9122C01A2E7CCDAD00B5E1CB /* Radio Teate On Air */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9122C03C2E7CCDAE00B5E1CB /* Build configuration list for PBXNativeTarget "Radio Teate On Air" */;
+			buildPhases = (
+				9122C0172E7CCDAD00B5E1CB /* Sources */,
+				9122C0182E7CCDAD00B5E1CB /* Frameworks */,
+				9122C0192E7CCDAD00B5E1CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				9122C01D2E7CCDAD00B5E1CB /* Radio Teate On Air */,
+			);
+			name = "Radio Teate On Air";
+			packageProductDependencies = (
+			);
+			productName = "Radio Teate On Air";
+			productReference = 9122C01B2E7CCDAD00B5E1CB /* Radio Teate On Air.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9122C0272E7CCDAE00B5E1CB /* Radio Teate On AirTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9122C03F2E7CCDAE00B5E1CB /* Build configuration list for PBXNativeTarget "Radio Teate On AirTests" */;
+			buildPhases = (
+				9122C0242E7CCDAE00B5E1CB /* Sources */,
+				9122C0252E7CCDAE00B5E1CB /* Frameworks */,
+				9122C0262E7CCDAE00B5E1CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9122C02A2E7CCDAE00B5E1CB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9122C02B2E7CCDAE00B5E1CB /* Radio Teate On AirTests */,
+			);
+			name = "Radio Teate On AirTests";
+			packageProductDependencies = (
+			);
+			productName = "Radio Teate On AirTests";
+			productReference = 9122C0282E7CCDAE00B5E1CB /* Radio Teate On AirTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9122C0312E7CCDAE00B5E1CB /* Radio Teate On AirUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9122C0422E7CCDAE00B5E1CB /* Build configuration list for PBXNativeTarget "Radio Teate On AirUITests" */;
+			buildPhases = (
+				9122C02E2E7CCDAE00B5E1CB /* Sources */,
+				9122C02F2E7CCDAE00B5E1CB /* Frameworks */,
+				9122C0302E7CCDAE00B5E1CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9122C0342E7CCDAE00B5E1CB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9122C0352E7CCDAE00B5E1CB /* Radio Teate On AirUITests */,
+			);
+			name = "Radio Teate On AirUITests";
+			packageProductDependencies = (
+			);
+			productName = "Radio Teate On AirUITests";
+			productReference = 9122C0322E7CCDAE00B5E1CB /* Radio Teate On AirUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9122C0132E7CCDAD00B5E1CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					9122C01A2E7CCDAD00B5E1CB = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					9122C0272E7CCDAE00B5E1CB = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 9122C01A2E7CCDAD00B5E1CB;
+					};
+					9122C0312E7CCDAE00B5E1CB = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 9122C01A2E7CCDAD00B5E1CB;
+					};
+				};
+			};
+			buildConfigurationList = 9122C0162E7CCDAD00B5E1CB /* Build configuration list for PBXProject "Radio Teate On Air" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9122C0122E7CCDAD00B5E1CB;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9122C01C2E7CCDAD00B5E1CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9122C01A2E7CCDAD00B5E1CB /* Radio Teate On Air */,
+				9122C0272E7CCDAE00B5E1CB /* Radio Teate On AirTests */,
+				9122C0312E7CCDAE00B5E1CB /* Radio Teate On AirUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9122C0192E7CCDAD00B5E1CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9122C0262E7CCDAE00B5E1CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9122C0302E7CCDAE00B5E1CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9122C0172E7CCDAD00B5E1CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9122C0242E7CCDAE00B5E1CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9122C02E2E7CCDAE00B5E1CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9122C02A2E7CCDAE00B5E1CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9122C01A2E7CCDAD00B5E1CB /* Radio Teate On Air */;
+			targetProxy = 9122C0292E7CCDAE00B5E1CB /* PBXContainerItemProxy */;
+		};
+		9122C0342E7CCDAE00B5E1CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9122C01A2E7CCDAD00B5E1CB /* Radio Teate On Air */;
+			targetProxy = 9122C0332E7CCDAE00B5E1CB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9122C03A2E7CCDAE00B5E1CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 3X95677VY9;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9122C03B2E7CCDAE00B5E1CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 3X95677VY9;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9122C03D2E7CCDAE00B5E1CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X95677VY9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Erga-Omnes.Radio-Teate-On-Air";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9122C03E2E7CCDAE00B5E1CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X95677VY9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Erga-Omnes.Radio-Teate-On-Air";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9122C0402E7CCDAE00B5E1CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X95677VY9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Erga-Omnes.Radio-Teate-On-AirTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Radio Teate On Air.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Radio Teate On Air";
+			};
+			name = Debug;
+		};
+		9122C0412E7CCDAE00B5E1CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X95677VY9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Erga-Omnes.Radio-Teate-On-AirTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Radio Teate On Air.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Radio Teate On Air";
+			};
+			name = Release;
+		};
+		9122C0432E7CCDAE00B5E1CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X95677VY9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Erga-Omnes.Radio-Teate-On-AirUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Radio Teate On Air";
+			};
+			name = Debug;
+		};
+		9122C0442E7CCDAE00B5E1CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X95677VY9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Erga-Omnes.Radio-Teate-On-AirUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Radio Teate On Air";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9122C0162E7CCDAD00B5E1CB /* Build configuration list for PBXProject "Radio Teate On Air" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9122C03A2E7CCDAE00B5E1CB /* Debug */,
+				9122C03B2E7CCDAE00B5E1CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9122C03C2E7CCDAE00B5E1CB /* Build configuration list for PBXNativeTarget "Radio Teate On Air" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9122C03D2E7CCDAE00B5E1CB /* Debug */,
+				9122C03E2E7CCDAE00B5E1CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9122C03F2E7CCDAE00B5E1CB /* Build configuration list for PBXNativeTarget "Radio Teate On AirTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9122C0402E7CCDAE00B5E1CB /* Debug */,
+				9122C0412E7CCDAE00B5E1CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9122C0422E7CCDAE00B5E1CB /* Build configuration list for PBXNativeTarget "Radio Teate On AirUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9122C0432E7CCDAE00B5E1CB /* Debug */,
+				9122C0442E7CCDAE00B5E1CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9122C0132E7CCDAD00B5E1CB /* Project object */;
+}
