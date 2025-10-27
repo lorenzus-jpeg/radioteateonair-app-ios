@@ -13,6 +13,8 @@ struct ScheduleModalView: View {
     
     var body: some View {
         ZStack {
+            Color.white.ignoresSafeArea()
+            
             ScheduleWebView(isLoading: $isLoading)
                 .ignoresSafeArea(edges: .bottom)
             
@@ -42,9 +44,9 @@ struct ScheduleWebView: UIViewRepresentable {
         let webView = WKWebView(frame: .zero, configuration: config)
         webView.navigationDelegate = context.coordinator
         webView.scrollView.contentInsetAdjustmentBehavior = .never
-        webView.isOpaque = false
-        webView.backgroundColor = .clear
-        webView.alpha = 0 // Hide initially
+        webView.isOpaque = true
+        webView.backgroundColor = .white
+        webView.alpha = 0
         
         if let url = URL(string: "https://radioteateonair.it/palinsesto") {
             webView.load(URLRequest(url: url))
@@ -62,6 +64,13 @@ struct ScheduleWebView: UIViewRepresentable {
             self.parent = parent
         }
         
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            print("🔄 Starting to load schedule page...")
+            DispatchQueue.main.async {
+                self.parent.isLoading = true
+            }
+        }
+        
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             print("✅ Pagina palinsesto caricata, attendo caricamento completo...")
             
@@ -70,7 +79,7 @@ struct ScheduleWebView: UIViewRepresentable {
             print("📅 Giorno corrente: \(currentDay)")
             
             // Wait a bit more for dynamic content to load
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                 // JavaScript to keep only the schedule and show current day
                 let script = """
                 (function() {
@@ -149,7 +158,6 @@ struct ScheduleWebView: UIViewRepresentable {
                         print("✅ Filtro palinsesto applicato con successo")
                     }
                     
-                    // Show the WebView after filtering is complete
                     DispatchQueue.main.async {
                         UIView.animate(withDuration: 0.3) {
                             webView.alpha = 1

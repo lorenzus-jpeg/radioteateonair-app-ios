@@ -5,5 +5,9 @@
 	<key>Multiple commands produce '/Users/lrnz/Library/Developer/Xcode/DerivedData/Radio_Teate_On_Air-brdezjorbiuuwxdwlifothoktadh/Build/Intermediates.noindex/ArchiveIntermediates/Radio Teate On Air/InstallationBuildProductsLocation/Applications/Radio Teate On Air.app/Info.plist'
 ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 </dict>
 </plist>

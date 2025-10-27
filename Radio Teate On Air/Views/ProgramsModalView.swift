@@ -13,6 +13,8 @@ struct ProgramsModalView: View {
     
     var body: some View {
         ZStack {
+            Color.white.ignoresSafeArea()
+            
             FilteredWebView(isLoading: $isLoading)
                 .ignoresSafeArea(edges: .bottom)
             
@@ -42,6 +44,9 @@ struct FilteredWebView: UIViewRepresentable {
         let webView = WKWebView(frame: .zero, configuration: config)
         webView.navigationDelegate = context.coordinator
         webView.scrollView.contentInsetAdjustmentBehavior = .never
+        webView.isOpaque = true
+        webView.backgroundColor = .white
+        webView.alpha = 0
         
         if let url = URL(string: "https://radioteateonair.it/programmi") {
             webView.load(URLRequest(url: url))
@@ -102,7 +107,13 @@ struct FilteredWebView: UIViewRepresentable {
                     print("✅ Filtro applicato con successo")
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.3) {
+                        webView.alpha = 1
+                    }
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     self.parent.isLoading = false
                 }
             }

@@ -81,7 +81,6 @@ struct ContentView: View {
     @State private var isPlaying = false
     @State private var player: AVPlayer?
     @State private var streamURL: String = "https://nr14.newradio.it:8663/radioteateonair"
-    @State private var showModal = false
     @State private var currentModal: ModalType?
     @State private var songInfo: SongInfo?
     @State private var updateTimer: Timer?
@@ -180,7 +179,6 @@ struct ContentView: View {
                     // Schedule icon - Left
                     Button(action: {
                         currentModal = .schedule
-                        showModal = true
                     }) {
                         VStack(spacing: 8) {
                             if let uiImage = UIImage(named: "ic_schedule") {
@@ -206,7 +204,6 @@ struct ContentView: View {
                     // Programs icon - Center
                     Button(action: {
                         currentModal = .programs
-                        showModal = true
                     }) {
                         VStack(spacing: 8) {
                             if let uiImage = UIImage(named: "ic_programs") {
@@ -231,7 +228,6 @@ struct ContentView: View {
                     // Who We Are icon - Right
                     Button(action: {
                         currentModal = .whoWeAre
-                        showModal = true
                     }) {
                         VStack(spacing: 8) {
                             if let uiImage = UIImage(named: "ic_whoweare") {
@@ -345,7 +341,7 @@ struct ContentView: View {
                     Divider()
                         .background(Color.gray)
                     
-                    Text("Follow Us")
+                    Text("Seguici su")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding(.top, 10)
@@ -410,6 +406,21 @@ struct ContentView: View {
                                     .foregroundColor(.green)
                             }
                         }
+                        
+                        Link(destination: URL(string: "https://open.spotify.com/user/bdubob5m8sthl8504ab0xx88y")!) {
+                            if let uiImage = UIImage(named: "social_spotify") {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .foregroundColor(.green)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 40, height: 40)
+                            } else {
+                                Image(systemName: "music.note")
+                                    .font(.system(size: 40))
+                                    .foregroundColor(.green)
+                            }
+                        }
                     }
                     .padding(.bottom, 15)
                 }
@@ -419,12 +430,11 @@ struct ContentView: View {
             }
             .padding()
         }
-        .sheet(isPresented: $showModal) {
-            if let modalType = currentModal {
-                ModalContentView(modalType: modalType)
-                    .presentationDetents([.large])
-                    .presentationDragIndicator(.visible)
-            }
+        .sheet(item: $currentModal) { modalType in
+            ModalContentView(modalType: modalType)
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+                .presentationBackground(.white)
         }
     }
     

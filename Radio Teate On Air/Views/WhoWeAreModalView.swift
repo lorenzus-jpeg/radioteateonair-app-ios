@@ -1,10 +1,3 @@
-//
-//  WhoWeAreModalView.swift
-//  Radio Teate On Air
-//
-//  Created by Lorenzo Cugini on 19/10/25.
-//
-
 
 //
 //  WhoWeAreModalView.swift
@@ -19,15 +12,19 @@ struct WhoWeAreModalView: View {
     @State private var content: String = ""
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                Text(content)
-                    .font(.body)
-                    .foregroundColor(.black)
-                    .padding()
-                    .multilineTextAlignment(.leading)
+        ZStack {
+            Color.white.ignoresSafeArea()
+            
+            ScrollView {
+                VStack(spacing: 20) {
+                    Text(content)
+                        .font(.body)
+                        .foregroundColor(.black)
+                        .padding()
+                        .multilineTextAlignment(.leading)
+                }
+                .padding(.top, 20)
             }
-            .padding(.top, 20)
         }
         .onAppear {
             loadContent()
