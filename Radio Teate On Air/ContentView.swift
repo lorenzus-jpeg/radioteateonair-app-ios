@@ -174,9 +174,7 @@ struct ContentView: View {
             .ignoresSafeArea()
             
             VStack {
-                // Top icons section
                 HStack(spacing: 0) {
-                    // Schedule icon - Left
                     Button(action: {
                         currentModal = .schedule
                     }) {
@@ -201,7 +199,6 @@ struct ContentView: View {
                     }
                     .frame(maxWidth: .infinity)
                     
-                    // Programs icon - Center
                     Button(action: {
                         currentModal = .programs
                     }) {
@@ -225,7 +222,6 @@ struct ContentView: View {
                     }
                     .frame(maxWidth: .infinity)
                     
-                    // Who We Are icon - Right
                     Button(action: {
                         currentModal = .whoWeAre
                     }) {
@@ -254,7 +250,6 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                // Main content area with background image
                 VStack(spacing: 20) {
                     if let uiImage = UIImage(named: "ic_rtoa_logo") {
                         Image(uiImage: uiImage)
@@ -272,14 +267,12 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                // Music player controls at the bottom
                 VStack {
                     Divider()
                         .background(Color.gray)
                     
                     HStack(spacing: 25) {
                         if isPlaying {
-                            // Stop button on the left when playing
                             Button(action: togglePlayback) {
                                 Image(systemName: "stop.fill")
                                     .font(.system(size: 30))
@@ -290,7 +283,6 @@ struct ContentView: View {
                             }
                             .transition(.scale.combined(with: .opacity))
                             
-                            // Song info on the right, left-aligned
                             VStack(alignment: .leading, spacing: 4) {
                                 if let info = songInfo {
                                     Text(info.song)
@@ -314,7 +306,6 @@ struct ContentView: View {
                             .transition(.move(edge: .trailing).combined(with: .opacity))
                             
                         } else {
-                            // Play button centered when stopped
                             Spacer()
                             
                             Button(action: togglePlayback) {
@@ -336,7 +327,6 @@ struct ContentView: View {
                 }
                 .background(Color.black.opacity(0.3))
                 
-                // Social media icons
                 VStack {
                     Divider()
                         .background(Color.gray)
@@ -430,6 +420,9 @@ struct ContentView: View {
             }
             .padding()
         }
+        .onAppear {
+            WebViewCache.shared.prefetchAll()
+        }
         .sheet(item: $currentModal) { modalType in
             ModalContentView(modalType: modalType)
                 .presentationDetents([.large])
@@ -456,7 +449,6 @@ struct ContentView: View {
         player?.play()
         isPlaying = true
         
-        // Start updating song info
         startSongInfoUpdater()
     }
     
@@ -466,16 +458,13 @@ struct ContentView: View {
         isPlaying = false
         songInfo = nil
         
-        // Stop the timer
         updateTimer?.invalidate()
         updateTimer = nil
     }
     
     private func startSongInfoUpdater() {
-        // Fetch immediately
         fetchSongInfo()
         
-        // Then update every 10 seconds
         updateTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { _ in
             fetchSongInfo()
         }
@@ -508,7 +497,6 @@ struct ContentView: View {
                     
                     print("🎵 Full title: \(fullTitle)")
                     
-                    // Split by " - " to get artist and song
                     let parts = fullTitle.components(separatedBy: " - ")
                     let artist = parts.first?.trimmingCharacters(in: .whitespaces) ?? "Artista sconosciuto"
                     let song = parts.count > 1 ? parts[1].trimmingCharacters(in: .whitespaces) : "Titolo sconosciuto"

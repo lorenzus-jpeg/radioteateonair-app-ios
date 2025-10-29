@@ -1,3 +1,4 @@
+
 //
 //  WebViewCache.swift
 //  Radio Teate On Air
@@ -64,18 +65,10 @@ class WebViewCache: ObservableObject {
             var dayDiv = document.querySelector('#' + dayId);
             
             if (dayDiv && dayDiv.innerHTML.trim().length > 0) {
-                var styles = '';
-                var styleSheets = document.styleSheets;
-                for (var i = 0; i < styleSheets.length; i++) {
-                    try {
-                        var rules = styleSheets[i].cssRules || styleSheets[i].rules;
-                        for (var j = 0; j < rules.length; j++) {
-                            styles += rules[j].cssText + '\\n';
-                        }
-                    } catch(e) {}
-                }
+                var head = document.head.cloneNode(true);
+                var headHTML = head.innerHTML;
                 
-                return '<html><head><style>' + styles + '</style></head><body style="margin:0;padding:0;">' + dayDiv.outerHTML + '</body></html>';
+                return '<!DOCTYPE html><html><head>' + headHTML + '</head><body style="margin:0;padding:0;">' + dayDiv.outerHTML + '</body></html>';
             }
             return null;
         })();
@@ -95,29 +88,16 @@ class WebViewCache: ObservableObject {
     private func extractProgramsHTML() {
         let script = """
         (function() {
-            var content = document.querySelector('.elementor-widget-wrap');
+            var content = document.querySelector('[data-elementor-id="4947"]');
             
             if (!content) {
-                content = document.querySelector('main') || document.body;
+                return null;
             }
             
-            var styles = '';
-            var styleSheets = document.styleSheets;
-            for (var i = 0; i < styleSheets.length; i++) {
-                try {
-                    var rules = styleSheets[i].cssRules || styleSheets[i].rules;
-                    for (var j = 0; j < rules.length; j++) {
-                        styles += rules[j].cssText + '\\n';
-                    }
-                } catch(e) {}
-            }
+            var head = document.head.cloneNode(true);
+            var headHTML = head.innerHTML;
             
-            var header = document.querySelector('header');
-            if (header) header.remove();
-            var footer = document.querySelector('footer');
-            if (footer) footer.remove();
-            
-            return '<html><head><style>' + styles + '</style></head><body style="margin:0;padding:0;">' + content.outerHTML + '</body></html>';
+            return '<!DOCTYPE html><html><head>' + headHTML + '</head><body style="margin:0;padding:0;">' + content.outerHTML + '</body></html>';
         })();
         """
         
@@ -128,6 +108,8 @@ class WebViewCache: ObservableObject {
                     self?.programsReady = true
                     print("✅ Programs cached")
                 }
+            } else {
+                print("❌ Programs extraction failed: \(error?.localizedDescription ?? "unknown")")
             }
         }
     }

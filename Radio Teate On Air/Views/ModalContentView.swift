@@ -5,7 +5,6 @@
 //
 //  Created by Lorenzo Cugini on 19/10/25.
 //
-
 import SwiftUI
 
 struct ModalContentView: View {
@@ -17,7 +16,6 @@ struct ModalContentView: View {
             Color.white.ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Top bar with close button
                 HStack {
                     Spacer()
                     Button(action: {
@@ -33,7 +31,6 @@ struct ModalContentView: View {
                     .padding()
                 }
                 
-                // Display the appropriate modal content
                 Group {
                     switch modalType {
                     case .schedule:
