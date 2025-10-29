@@ -56,11 +56,27 @@ Per clonare, configurare e avviare l'applicazione in locale, segui questi passag
 
 ## 4. Tecnologie Utilizzate
 
+- **Swift/SwiftUI**: Linguaggio e framework per lo sviluppo dell'interfaccia utente
+- **AVFoundation**: Framework per lo streaming audio in tempo reale
+- **WebKit**: Rendering delle pagine web per palinsesto e programmi
+- **MediaPlayer**: Integrazione con i controlli nativi iOS (lock screen, control center)
+- **Combine**: Gestione reattiva dello stato dell'app
 
 ---
 
 ## 5. Architettura
 
+L'app segue un'architettura **MVVM** (Model-View-ViewModel):
+- **ContentView**: Vista principale con player e navigazione
+- **AudioManager**: Gestione streaming, metadati e controlli remoti
+- **WebViewCache**: Sistema di prefetch e caching per contenuti web
+- **Modal Views**: Viste modali per palinsesto, programmi e informazioni
+
+Il player audio utilizza `AVPlayer` per lo streaming HTTP in background, con supporto completo per:
+- Riproduzione in background
+- Controlli lock screen/control center
+- Aggiornamento automatico metadati brani
+- Gestione interruzioni (chiamate, allarmi)
 
 ---
 
