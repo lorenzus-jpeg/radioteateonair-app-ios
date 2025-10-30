@@ -73,8 +73,25 @@ struct CachedProgramsWebView: UIViewRepresentable {
         }
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            DispatchQueue.main.async {
-                self.parent.isLoading = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                let script = """
+                (function() {
+                    var header = document.querySelector('header');
+                    if (header) header.remove();
+                    
+                    var footer = document.querySelector('footer');
+                    if (footer) footer.remove();
+                    
+                    var nav = document.querySelector('nav');
+                    if (nav) nav.remove();
+                })();
+                """
+                
+                webView.evaluateJavaScript(script) { result, error in
+                    DispatchQueue.main.async {
+                        self.parent.isLoading = false
+                    }
+                }
             }
         }
     }
