@@ -78,12 +78,8 @@ struct AnimatedBottomWave: View {
 }
 
 struct ContentView: View {
-    @State private var isPlaying = false
-    @State private var player: AVPlayer?
-    @State private var streamURL: String = "https://nr14.newradio.it:8663/radioteateonair"
+    @StateObject private var audioManager = AudioManager()
     @State private var currentModal: ModalType?
-    @State private var songInfo: SongInfo?
-    @State private var updateTimer: Timer?
     
     var body: some View {
         ZStack {
@@ -272,8 +268,10 @@ struct ContentView: View {
                         .background(Color.gray)
                     
                     HStack(spacing: 25) {
-                        if isPlaying {
-                            Button(action: togglePlayback) {
+                        if audioManager.isPlaying {
+                            Button(action: {
+                                audioManager.togglePlayback()
+                            }) {
                                 Image(systemName: "stop.fill")
                                     .font(.system(size: 30))
                                     .foregroundColor(.white)
@@ -284,7 +282,7 @@ struct ContentView: View {
                             .transition(.scale.combined(with: .opacity))
                             
                             VStack(alignment: .leading, spacing: 4) {
-                                if let info = songInfo {
+                                if let info = audioManager.songInfo {
                                     Text(info.song)
                                         .font(.headline)
                                         .foregroundColor(.white)
@@ -308,7 +306,9 @@ struct ContentView: View {
                         } else {
                             Spacer()
                             
-                            Button(action: togglePlayback) {
+                            Button(action: {
+                                audioManager.togglePlayback()
+                            }) {
                                 Image(systemName: "play.fill")
                                     .font(.system(size: 30))
                                     .foregroundColor(.white)
@@ -323,7 +323,7 @@ struct ContentView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical)
-                    .animation(.easeInOut(duration: 0.3), value: isPlaying)
+                    .animation(.easeInOut(duration: 0.3), value: audioManager.isPlaying)
                 }
                 .background(Color.black.opacity(0.3))
                 
@@ -429,92 +429,6 @@ struct ContentView: View {
                 .presentationDragIndicator(.visible)
                 .presentationBackground(.white)
         }
-    }
-    
-    private func togglePlayback() {
-        if isPlaying {
-            stopPlayback()
-        } else {
-            startPlayback()
-        }
-    }
-    
-    private func startPlayback() {
-        guard !streamURL.isEmpty, let url = URL(string: streamURL) else {
-            print("Invalid or empty stream URL")
-            return
-        }
-        
-        player = AVPlayer(url: url)
-        player?.play()
-        isPlaying = true
-        
-        startSongInfoUpdater()
-    }
-    
-    private func stopPlayback() {
-        player?.pause()
-        player = nil
-        isPlaying = false
-        songInfo = nil
-        
-        updateTimer?.invalidate()
-        updateTimer = nil
-    }
-    
-    private func startSongInfoUpdater() {
-        fetchSongInfo()
-        
-        updateTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { _ in
-            fetchSongInfo()
-        }
-    }
-    
-    private func fetchSongInfo() {
-        let jsonUrl = "https://nr14.newradio.it:8663/status-json.xsl"
-        
-        guard let url = URL(string: jsonUrl) else {
-            print("❌ Invalid JSON URL")
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("❌ Error fetching song info: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let data = data else {
-                print("❌ No data received")
-                return
-            }
-            
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                   let icestats = json["icestats"] as? [String: Any],
-                   let source = icestats["source"] as? [String: Any],
-                   let fullTitle = source["yp_currently_playing"] as? String {
-                    
-                    print("🎵 Full title: \(fullTitle)")
-                    
-                    let parts = fullTitle.components(separatedBy: " - ")
-                    let artist = parts.first?.trimmingCharacters(in: .whitespaces) ?? "Artista sconosciuto"
-                    let song = parts.count > 1 ? parts[1].trimmingCharacters(in: .whitespaces) : "Titolo sconosciuto"
-                    
-                    DispatchQueue.main.async {
-                        self.songInfo = SongInfo(artist: artist, song: song)
-                        print("✅ Song info updated: \(artist) - \(song)")
-                    }
-                }
-            } catch {
-                print("❌ JSON parsing error: \(error.localizedDescription)")
-            }
-        }.resume()
-    }
-    
-    private func openURL(_ urlString: String) {
-        guard let url = URL(string: urlString) else { return }
-        UIApplication.shared.open(url)
     }
 }
 

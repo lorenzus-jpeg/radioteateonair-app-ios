@@ -268,7 +268,7 @@ class AudioManager: ObservableObject {
         
         // Keep the artwork if it exists
         if nowPlayingInfo[MPMediaItemPropertyArtwork] == nil,
-           let logoImage = UIImage(named: "ic_rtoa_logo") {
+           let logoImage = UIImage(named: "icona-app") {
             let artwork = MPMediaItemArtwork(boundsSize: logoImage.size) { _ in logoImage }
             nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
         }
