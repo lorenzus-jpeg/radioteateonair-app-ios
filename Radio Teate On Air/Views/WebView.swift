@@ -1,16 +1,6 @@
 //
 //  WebViewWrapper.swift
-//  Radio Teate On Air
-//
-//  Created by Lorenzo Cugini on 19/10/25.
-//
-
-
-//
-//  WebView.swift
-//  Radio Teate On Air
-//
-//  Created by Lorenzo Cugini on 19/10/25.
+//  @author lorenzus-jpeg
 //
 
 import SwiftUI

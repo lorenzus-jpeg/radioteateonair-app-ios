@@ -1,9 +1,7 @@
 
 //
 //  AudioManager.swift
-//  Radio Teate On Air
-//
-//  Created by Lorenzo Cugini on 19/10/25.
+//  @author lorenzus-jpeg
 //
 
 import Foundation
@@ -29,9 +27,9 @@ class AudioManager: ObservableObject {
             let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(.playback, mode: .default)
             try audioSession.setActive(true)
-            print("✅ Audio session configured for background playback")
+            print("Audio session configured for background playback")
         } catch {
-            print("❌ Failed to configure audio session: \(error.localizedDescription)")
+            print("Failed to configure audio session: \(error.localizedDescription)")
         }
     }
     
@@ -53,12 +51,12 @@ class AudioManager: ObservableObject {
         
         switch type {
         case .began:
-            print("🔔 Audio interruption began")
+            print("Audio interruption began")
         case .ended:
             guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
             let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
             if options.contains(.shouldResume) && isPlaying {
-                print("🔔 Resuming playback after interruption")
+                print("Resuming playback after interruption")
                 player?.play()
             }
         @unknown default:
@@ -76,7 +74,7 @@ class AudioManager: ObservableObject {
     
     func startPlayback() {
         guard let url = URL(string: streamURL) else {
-            print("❌ Invalid stream URL")
+            print("Invalid stream URL")
             return
         }
         
@@ -89,7 +87,7 @@ class AudioManager: ObservableObject {
         setupNowPlayingInfo()
         startSongInfoUpdater()
         
-        print("▶️ Playback started - Now Playing notification active")
+        print("Playback started - Now Playing notification active")
     }
     
     func stopPlayback() {
@@ -131,7 +129,7 @@ class AudioManager: ObservableObject {
         
         // Update the Now Playing Center
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
-        print("📱 Now Playing notification updated")
+        //print("Now Playing notification updated")
     }
     
     private func setupRemoteControls() {
@@ -157,7 +155,7 @@ class AudioManager: ObservableObject {
         // PAUSE button in notification/lock screen
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget { [weak self] event in
-            print("⏸️ Remote: Pause command received")
+            print("Remote: Pause command received")
             guard let self = self else { return .commandFailed }
             if self.isPlaying {
                 self.stopPlayback()
@@ -168,7 +166,7 @@ class AudioManager: ObservableObject {
         // STOP button (some devices)
         commandCenter.stopCommand.isEnabled = true
         commandCenter.stopCommand.addTarget { [weak self] event in
-            print("⏹️ Remote: Stop command received")
+            print("Remote: Stop command received")
             guard let self = self else { return .commandFailed }
             if self.isPlaying {
                 self.stopPlayback()
@@ -179,7 +177,7 @@ class AudioManager: ObservableObject {
         // Toggle Play/Pause (when user taps the notification)
         commandCenter.togglePlayPauseCommand.isEnabled = true
         commandCenter.togglePlayPauseCommand.addTarget { [weak self] event in
-            print("🔄 Remote: Toggle Play/Pause command received")
+            print("Remote: Toggle Play/Pause command received")
             guard let self = self else { return .commandFailed }
             self.togglePlayback()
             return .success
@@ -194,7 +192,7 @@ class AudioManager: ObservableObject {
         commandCenter.seekForwardCommand.isEnabled = false
         commandCenter.changePlaybackPositionCommand.isEnabled = false
         
-        print("✅ Remote controls configured (Play, Pause, Stop)")
+        //print("Remote controls configured (Play, Pause, Stop)")
     }
     
     private func startSongInfoUpdater() {
@@ -211,18 +209,18 @@ class AudioManager: ObservableObject {
         let jsonUrl = "https://nr14.newradio.it:8663/status-json.xsl"
         
         guard let url = URL(string: jsonUrl) else {
-            print("❌ Invalid JSON URL")
+            print("Invalid JSON URL")
             return
         }
         
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             if let error = error {
-                print("❌ Error fetching song info: \(error.localizedDescription)")
+                print("Error fetching song info: \(error.localizedDescription)")
                 return
             }
             
             guard let data = data else {
-                print("❌ No data received")
+                print("No data received")
                 return
             }
             
@@ -230,10 +228,11 @@ class AudioManager: ObservableObject {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                    let icestats = json["icestats"] as? [String: Any],
                    let source = icestats["source"] as? [String: Any],
-                   let fullTitle = source["yp_currently_playing"] as? String {
+                   //let fullTitle = source["yp_currently_playing"] as? String {
+                   let fullTitle = source["title"] as? String {
+                    //print("Full title: \(fullTitle)")
                     
-                    print("🎵 Full title: \(fullTitle)")
-                    
+                    //let parts = fullTitle.components(separatedBy: " - ")
                     let parts = fullTitle.components(separatedBy: " - ")
                     let artist = parts.first?.trimmingCharacters(in: .whitespaces) ?? "Artista sconosciuto"
                     let song = parts.count > 1 ? parts[1].trimmingCharacters(in: .whitespaces) : "Titolo sconosciuto"
@@ -242,11 +241,11 @@ class AudioManager: ObservableObject {
                         self?.songInfo = SongInfo(artist: artist, song: song)
                         // Update the notification with new song info
                         self?.updateNowPlayingInfo(artist: artist, song: song)
-                        print("✅ Song info updated: \(artist) - \(song)")
+                        //print("Song info updated: \(artist) - \(song)")
                     }
                 }
             } catch {
-                print("❌ JSON parsing error: \(error.localizedDescription)")
+                print("JSON parsing error: \(error.localizedDescription)")
             }
         }.resume()
     }

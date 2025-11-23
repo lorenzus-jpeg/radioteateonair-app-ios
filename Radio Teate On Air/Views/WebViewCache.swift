@@ -1,10 +1,7 @@
 
 //
 //  WebViewCache.swift
-//  Radio Teate On Air
-//
-//  Created by Lorenzo Cugini on 29/10/25.
-//
+//  @author lorenzus-jpeg
 
 import Foundation
 import WebKit
@@ -79,7 +76,7 @@ class WebViewCache: ObservableObject {
                 DispatchQueue.main.async {
                     self?.scheduleHTML = html
                     self?.scheduleReady = true
-                    print("✅ Schedule cached")
+                    //print("Schedule cached")
                 }
             }
         }
@@ -106,10 +103,10 @@ class WebViewCache: ObservableObject {
                 DispatchQueue.main.async {
                     self?.programsHTML = html
                     self?.programsReady = true
-                    print("✅ Programs cached")
+                    //print("Programs cached")
                 }
             } else {
-                print("❌ Programs extraction failed: \(error?.localizedDescription ?? "unknown")")
+                print("Programs extraction failed: \(error?.localizedDescription ?? "unknown")")
             }
         }
     }

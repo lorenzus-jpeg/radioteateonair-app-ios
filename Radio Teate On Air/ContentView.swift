@@ -1,9 +1,7 @@
 
 //
 //  ContentView.swift
-//  Radio Teate On Air
-//
-//  Created by Lorenzo Cugini on 19/09/25.
+//  @author lorenzus-jpeg
 //
 
 import SwiftUI
@@ -281,22 +279,22 @@ struct ContentView: View {
                             }
                             .transition(.scale.combined(with: .opacity))
                             
-                            VStack(alignment: .leading, spacing: 4) {
+                            VStack(alignment: .leading, spacing: 6) {
                                 if let info = audioManager.songInfo {
                                     Text(info.song)
-                                        .font(.headline)
+                                        .font(.system(size: 16, weight: .bold))
                                         .foregroundColor(.white)
                                         .lineLimit(1)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                     Text(info.artist)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .foregroundColor(.white.opacity(0.9))
                                         .lineLimit(1)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 } else {
                                     Text("Caricamento...")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .foregroundColor(.white.opacity(0.8))
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             }
