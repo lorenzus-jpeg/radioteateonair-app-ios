@@ -46,6 +46,84 @@ struct BottomWave: Shape {
     }
 }
 
+struct BottomLine: Shape {
+    var phase: CGFloat
+    var lineHeight: CGFloat
+    var frequency: CGFloat
+    
+    var animatableData: CGFloat {
+        get { phase }
+        set { phase = newValue }
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let width = rect.width
+        let height = rect.height
+        let lineCount = Int(frequency) + 1
+        let spacing = width / CGFloat(lineCount)
+        
+        path.move(to: CGPoint(x: 0, y: height))
+        
+        for i in 0...lineCount {
+            let currentX = CGFloat(i) * spacing
+            let normalizedX = CGFloat(i) / CGFloat(lineCount)
+            let angle = (normalizedX * frequency * 2 * .pi) + (phase * 2 * .pi)
+            let lineY = height - lineHeight - sin(angle) * (lineHeight * 0.4)
+            
+            path.addLine(to: CGPoint(x: currentX, y: lineY))
+            if i < lineCount {
+                path.addLine(to: CGPoint(x: currentX + spacing, y: lineY))
+            }
+        }
+        
+        path.addLine(to: CGPoint(x: width, y: height))
+        path.closeSubpath()
+        
+        return path
+    }
+}
+
+struct BottomPeak: Shape {
+    var phase: CGFloat
+    var peakHeight: CGFloat
+    var frequency: CGFloat
+    
+    var animatableData: CGFloat {
+        get { phase }
+        set { phase = newValue }
+    }
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let width = rect.width
+        let height = rect.height
+        let spacing = width / CGFloat(Int(frequency) + 1)
+        
+        path.move(to: CGPoint(x: 0, y: height))
+        
+        var currentX: CGFloat = 0
+        let halfSpacing = spacing / 2
+        
+        while currentX <= width {
+            let normalizedX = currentX / width
+            let angle = (normalizedX * frequency * 2 * .pi) + (phase * 2 * .pi)
+            let peakValue = abs(sin(angle))
+            let peakY = height - (peakValue * peakHeight * 0.8)
+            
+            path.addLine(to: CGPoint(x: currentX, y: peakY))
+            path.addLine(to: CGPoint(x: currentX + halfSpacing, y: height))
+            
+            currentX += spacing
+        }
+        
+        path.addLine(to: CGPoint(x: width, y: height))
+        path.closeSubpath()
+        
+        return path
+    }
+}
+
 struct AnimatedBottomWave: View {
     let waveHeight: CGFloat
     let frequency: CGFloat
@@ -75,9 +153,68 @@ struct AnimatedBottomWave: View {
     }
 }
 
+struct AnimatedBottomLine: View {
+    let lineHeight: CGFloat
+    let frequency: CGFloat
+    let duration: Double
+    let greenShade: Color
+    let startPhase: CGFloat
+    
+    @State private var phase: CGFloat
+    
+    init(lineHeight: CGFloat, frequency: CGFloat, duration: Double, greenShade: Color, startPhase: CGFloat = 0) {
+        self.lineHeight = lineHeight
+        self.frequency = frequency
+        self.duration = duration
+        self.greenShade = greenShade
+        self.startPhase = startPhase
+        self._phase = State(initialValue: startPhase)
+    }
+    
+    var body: some View {
+        BottomLine(phase: phase, lineHeight: lineHeight, frequency: frequency)
+            .fill(greenShade)
+            .onAppear {
+                withAnimation(.linear(duration: duration).repeatForever(autoreverses: false)) {
+                    phase = startPhase + 1
+                }
+            }
+    }
+}
+
+struct AnimatedBottomPeak: View {
+    let peakHeight: CGFloat
+    let frequency: CGFloat
+    let duration: Double
+    let greenShade: Color
+    let startPhase: CGFloat
+    
+    @State private var phase: CGFloat
+    
+    init(peakHeight: CGFloat, frequency: CGFloat, duration: Double, greenShade: Color, startPhase: CGFloat = 0) {
+        self.peakHeight = peakHeight
+        self.frequency = frequency
+        self.duration = duration
+        self.greenShade = greenShade
+        self.startPhase = startPhase
+        self._phase = State(initialValue: startPhase)
+    }
+    
+    var body: some View {
+        BottomPeak(phase: phase, peakHeight: peakHeight, frequency: frequency)
+            .fill(greenShade)
+            .onAppear {
+                withAnimation(.linear(duration: duration).repeatForever(autoreverses: false)) {
+                    phase = startPhase + 1
+                }
+            }
+    }
+}
+
 struct ContentView: View {
     @StateObject private var audioManager = AudioManager()
     @State private var currentModal: ModalType?
+    @AppStorage("backgroundStyle") var backgroundStyle: String = "onde"
     
     var body: some View {
         ZStack {
@@ -85,85 +222,247 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             ZStack {
-                AnimatedBottomWave(
-                    waveHeight: 280,
-                    frequency: 2,
-                    duration: 8,
-                    greenShade: Color(red: 0, green: 0.3, blue: 0.1).opacity(0.3),
-                    startPhase: 0
-                )
-                
-                AnimatedBottomWave(
-                    waveHeight: 240,
-                    frequency: 2.5,
-                    duration: 7,
-                    greenShade: Color(red: 0, green: 0.35, blue: 0.12).opacity(0.35),
-                    startPhase: 0.1
-                )
-                
-                AnimatedBottomWave(
-                    waveHeight: 320,
-                    frequency: 1.8,
-                    duration: 9,
-                    greenShade: Color(red: 0, green: 0.4, blue: 0.15).opacity(0.4),
-                    startPhase: 0.2
-                )
-                
-                AnimatedBottomWave(
-                    waveHeight: 200,
-                    frequency: 3,
-                    duration: 6,
-                    greenShade: Color(red: 0, green: 0.45, blue: 0.18).opacity(0.45),
-                    startPhase: 0.3
-                )
-                
-                AnimatedBottomWave(
-                    waveHeight: 360,
-                    frequency: 1.5,
-                    duration: 10,
-                    greenShade: Color(red: 0, green: 0.5, blue: 0.2).opacity(0.5),
-                    startPhase: 0.4
-                )
-                
-                AnimatedBottomWave(
-                    waveHeight: 180,
-                    frequency: 3.5,
-                    duration: 5.5,
-                    greenShade: Color(red: 0, green: 0.55, blue: 0.22).opacity(0.55),
-                    startPhase: 0.5
-                )
-                
-                AnimatedBottomWave(
-                    waveHeight: 260,
-                    frequency: 2.2,
-                    duration: 7.5,
-                    greenShade: Color(red: 0, green: 0.6, blue: 0.25).opacity(0.6),
-                    startPhase: 0.6
-                )
-                
-                AnimatedBottomWave(
-                    waveHeight: 300,
-                    frequency: 1.6,
-                    duration: 8.5,
-                    greenShade: Color(red: 0.05, green: 0.65, blue: 0.28).opacity(0.65),
-                    startPhase: 0.7
-                )
-                
-                AnimatedBottomWave(
-                    waveHeight: 220,
-                    frequency: 2.8,
-                    duration: 6.5,
-                    greenShade: Color(red: 0.1, green: 0.7, blue: 0.3).opacity(0.7),
-                    startPhase: 0.8
-                )
-                
-                AnimatedBottomWave(
-                    waveHeight: 340,
-                    frequency: 1.4,
-                    duration: 9.5,
-                    greenShade: Color(red: 0.15, green: 0.75, blue: 0.32).opacity(0.75),
-                    startPhase: 0.9
-                )
+                if backgroundStyle == "onde" {
+                    AnimatedBottomWave(
+                        waveHeight: 280,
+                        frequency: 2,
+                        duration: 8,
+                        greenShade: Color(red: 0, green: 0.3, blue: 0.1).opacity(0.3),
+                        startPhase: 0
+                    )
+                    
+                    AnimatedBottomWave(
+                        waveHeight: 240,
+                        frequency: 2.5,
+                        duration: 7,
+                        greenShade: Color(red: 0, green: 0.35, blue: 0.12).opacity(0.35),
+                        startPhase: 0.1
+                    )
+                    
+                    AnimatedBottomWave(
+                        waveHeight: 320,
+                        frequency: 1.8,
+                        duration: 9,
+                        greenShade: Color(red: 0, green: 0.4, blue: 0.15).opacity(0.4),
+                        startPhase: 0.2
+                    )
+                    
+                    AnimatedBottomWave(
+                        waveHeight: 200,
+                        frequency: 3,
+                        duration: 6,
+                        greenShade: Color(red: 0, green: 0.45, blue: 0.18).opacity(0.45),
+                        startPhase: 0.3
+                    )
+                    
+                    AnimatedBottomWave(
+                        waveHeight: 360,
+                        frequency: 1.5,
+                        duration: 10,
+                        greenShade: Color(red: 0, green: 0.5, blue: 0.2).opacity(0.5),
+                        startPhase: 0.4
+                    )
+                    
+                    AnimatedBottomWave(
+                        waveHeight: 180,
+                        frequency: 3.5,
+                        duration: 5.5,
+                        greenShade: Color(red: 0, green: 0.55, blue: 0.22).opacity(0.55),
+                        startPhase: 0.5
+                    )
+                    
+                    AnimatedBottomWave(
+                        waveHeight: 260,
+                        frequency: 2.2,
+                        duration: 7.5,
+                        greenShade: Color(red: 0, green: 0.6, blue: 0.25).opacity(0.6),
+                        startPhase: 0.6
+                    )
+                    
+                    AnimatedBottomWave(
+                        waveHeight: 300,
+                        frequency: 1.6,
+                        duration: 8.5,
+                        greenShade: Color(red: 0.05, green: 0.65, blue: 0.28).opacity(0.65),
+                        startPhase: 0.7
+                    )
+                    
+                    AnimatedBottomWave(
+                        waveHeight: 220,
+                        frequency: 2.8,
+                        duration: 6.5,
+                        greenShade: Color(red: 0.1, green: 0.7, blue: 0.3).opacity(0.7),
+                        startPhase: 0.8
+                    )
+                    
+                    AnimatedBottomWave(
+                        waveHeight: 340,
+                        frequency: 1.4,
+                        duration: 9.5,
+                        greenShade: Color(red: 0.15, green: 0.75, blue: 0.32).opacity(0.75),
+                        startPhase: 0.9
+                    )
+                } else if backgroundStyle == "linee" {
+                    AnimatedBottomLine(
+                        lineHeight: 280,
+                        frequency: 2,
+                        duration: 8,
+                        greenShade: Color(red: 0, green: 0.3, blue: 0.1).opacity(0.3),
+                        startPhase: 0
+                    )
+                    
+                    AnimatedBottomLine(
+                        lineHeight: 240,
+                        frequency: 2.5,
+                        duration: 7,
+                        greenShade: Color(red: 0, green: 0.35, blue: 0.12).opacity(0.35),
+                        startPhase: 0.1
+                    )
+                    
+                    AnimatedBottomLine(
+                        lineHeight: 320,
+                        frequency: 1.8,
+                        duration: 9,
+                        greenShade: Color(red: 0, green: 0.4, blue: 0.15).opacity(0.4),
+                        startPhase: 0.2
+                    )
+                    
+                    AnimatedBottomLine(
+                        lineHeight: 200,
+                        frequency: 3,
+                        duration: 6,
+                        greenShade: Color(red: 0, green: 0.45, blue: 0.18).opacity(0.45),
+                        startPhase: 0.3
+                    )
+                    
+                    AnimatedBottomLine(
+                        lineHeight: 360,
+                        frequency: 1.5,
+                        duration: 10,
+                        greenShade: Color(red: 0, green: 0.5, blue: 0.2).opacity(0.5),
+                        startPhase: 0.4
+                    )
+                    
+                    AnimatedBottomLine(
+                        lineHeight: 180,
+                        frequency: 3.5,
+                        duration: 5.5,
+                        greenShade: Color(red: 0, green: 0.55, blue: 0.22).opacity(0.55),
+                        startPhase: 0.5
+                    )
+                    
+                    AnimatedBottomLine(
+                        lineHeight: 260,
+                        frequency: 2.2,
+                        duration: 7.5,
+                        greenShade: Color(red: 0, green: 0.6, blue: 0.25).opacity(0.6),
+                        startPhase: 0.6
+                    )
+                    
+                    AnimatedBottomLine(
+                        lineHeight: 300,
+                        frequency: 1.6,
+                        duration: 8.5,
+                        greenShade: Color(red: 0.05, green: 0.65, blue: 0.28).opacity(0.65),
+                        startPhase: 0.7
+                    )
+                    
+                    AnimatedBottomLine(
+                        lineHeight: 220,
+                        frequency: 2.8,
+                        duration: 6.5,
+                        greenShade: Color(red: 0.1, green: 0.7, blue: 0.3).opacity(0.7),
+                        startPhase: 0.8
+                    )
+                    
+                    AnimatedBottomLine(
+                        lineHeight: 340,
+                        frequency: 1.4,
+                        duration: 9.5,
+                        greenShade: Color(red: 0.15, green: 0.75, blue: 0.32).opacity(0.75),
+                        startPhase: 0.9
+                    )
+                } else if backgroundStyle == "picchi" {
+                    AnimatedBottomPeak(
+                        peakHeight: 280,
+                        frequency: 2,
+                        duration: 8,
+                        greenShade: Color(red: 0, green: 0.3, blue: 0.1).opacity(0.3),
+                        startPhase: 0
+                    )
+                    
+                    AnimatedBottomPeak(
+                        peakHeight: 240,
+                        frequency: 2.5,
+                        duration: 7,
+                        greenShade: Color(red: 0, green: 0.35, blue: 0.12).opacity(0.35),
+                        startPhase: 0.1
+                    )
+                    
+                    AnimatedBottomPeak(
+                        peakHeight: 320,
+                        frequency: 1.8,
+                        duration: 9,
+                        greenShade: Color(red: 0, green: 0.4, blue: 0.15).opacity(0.4),
+                        startPhase: 0.2
+                    )
+                    
+                    AnimatedBottomPeak(
+                        peakHeight: 200,
+                        frequency: 3,
+                        duration: 6,
+                        greenShade: Color(red: 0, green: 0.45, blue: 0.18).opacity(0.45),
+                        startPhase: 0.3
+                    )
+                    
+                    AnimatedBottomPeak(
+                        peakHeight: 360,
+                        frequency: 1.5,
+                        duration: 10,
+                        greenShade: Color(red: 0, green: 0.5, blue: 0.2).opacity(0.5),
+                        startPhase: 0.4
+                    )
+                    
+                    AnimatedBottomPeak(
+                        peakHeight: 180,
+                        frequency: 3.5,
+                        duration: 5.5,
+                        greenShade: Color(red: 0, green: 0.55, blue: 0.22).opacity(0.55),
+                        startPhase: 0.5
+                    )
+                    
+                    AnimatedBottomPeak(
+                        peakHeight: 260,
+                        frequency: 2.2,
+                        duration: 7.5,
+                        greenShade: Color(red: 0, green: 0.6, blue: 0.25).opacity(0.6),
+                        startPhase: 0.6
+                    )
+                    
+                    AnimatedBottomPeak(
+                        peakHeight: 300,
+                        frequency: 1.6,
+                        duration: 8.5,
+                        greenShade: Color(red: 0.05, green: 0.65, blue: 0.28).opacity(0.65),
+                        startPhase: 0.7
+                    )
+                    
+                    AnimatedBottomPeak(
+                        peakHeight: 220,
+                        frequency: 2.8,
+                        duration: 6.5,
+                        greenShade: Color(red: 0.1, green: 0.7, blue: 0.3).opacity(0.7),
+                        startPhase: 0.8
+                    )
+                    
+                    AnimatedBottomPeak(
+                        peakHeight: 340,
+                        frequency: 1.4,
+                        duration: 9.5,
+                        greenShade: Color(red: 0.15, green: 0.75, blue: 0.32).opacity(0.75),
+                        startPhase: 0.9
+                    )
+                }
             }
             .ignoresSafeArea()
             
@@ -232,6 +531,22 @@ struct ContentView: View {
                                     .frame(width: 50, height: 50)
                             }
                             Text("CHI SIAMO")
+                                .font(.system(size: 10, weight: .semibold))
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.center)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    Button(action: {
+                        currentModal = .settings
+                    }) {
+                        VStack(spacing: 8) {
+                            Image(systemName: "gearshape.fill")
+                                .font(.system(size: 30))
+                                .foregroundColor(.white)
+                                .frame(width: 50, height: 50)
+                            Text("OPZIONI")
                                 .font(.system(size: 10, weight: .semibold))
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)

@@ -1,8 +1,6 @@
 //
 //  Radio_Teate_On_AirApp.swift
-//  Radio Teate On Air
-//
-//  Created by Lorenzo Cugini on 19/09/25.
+//  @lorenzus-jpeg
 //
 
 import SwiftUI

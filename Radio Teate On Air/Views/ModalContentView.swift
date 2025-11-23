@@ -4,7 +4,6 @@
 //  @author lorenzus-jpeg
 //
 import SwiftUI
-
 struct ModalContentView: View {
     let modalType: ModalType
     @Environment(\.dismiss) var dismiss
@@ -37,6 +36,8 @@ struct ModalContentView: View {
                         ProgramsModalView()
                     case .whoWeAre:
                         WhoWeAreModalView()
+                    case .settings:
+                        SettingsModalView()
                     }
                 }
             }
